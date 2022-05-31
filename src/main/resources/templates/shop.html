@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Whisper&display=swap" rel="stylesheet">
+    <style>
+        body{
+            /* font-family: 'Nunito Sans', sans-serif; */
+            text-align: center;
+            font-weight: bold;
+
+        }
+        img{
+            height: auto;
+            width: auto;
+            max-width: 15em;
+            margin: 5px auto;
+        }
+        .card-title{
+            font-family: 'Whisper', cursive;
+            font-weight: 1000;
+            font-size: 3em;
+        }
+        .card-text{
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .card{
+
+            margin: 10px;
+        }
+        nav{
+
+            font-weight: bold;
+            font-size: 24px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/main">HIGHCLOUD</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shop">SHOP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">CART</a>
+                </li>
+            </ul>
+            <form class="d-flex" action="/shop">
+                <input class="form-control me-2" name="find" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<p></p>
+<div class="row row-cols-2 row-cols-md-4 g-0">
+    <div class="col" th:each="product : ${products}">
+        <div class="card">
+            <a th:href="@{/detail(title=${product.getTITLE()})}">
+                <img th:src= "'/img/' + ${product.getIMG()}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">[[${product.getTITLE()}]]</h5>
+                <p class="card-text" th:text="${#strings.substring(product.getINFO(),0,70)}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

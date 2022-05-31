@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Whisper&display=swap" rel="stylesheet">
+    <style>
+        body{
+            /* font-family: 'Nunito Sans', sans-serif; */
+
+            text-align: center;
+        }
+        #title{
+            font-size: 80px;
+        }
+
+        img{
+            height: auto;
+            width: auto;
+            max-width: 17em;
+            margin: 5px auto;
+            margin: 10px;
+            box-shadow: 5px 5px 10px grey;
+        }
+        nav{
+            font-weight: bold;
+            font-size: 24px;
+        }
+        ol{
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+
+<main>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="main.html">HIGHCLOUD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CART</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-4">
+
+
+        <div class="p-2 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-3" id="up">
+                <img th:src="'/img/' + ${cur.getIMG()}">
+                <h1  id="title" class="display-5 fw-bold" th:text="${cur.getTITLE()}"></h1>
+
+                <p class="fs-4" th:text="${cur.getINFO()}">   <!-- 앨범 설명 -->
+                    = ("equals") is the fifth studio album by English singer-songwriter Ed Sheeran, released on 29 October 2021 by Asylum and Atlantic Records. The album was supported by the singles "Bad Habits", "Shivers", "Overpass Graffiti", "The Joker and the Queen", "2step" and a promotional single, "Visiting Hours".
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row align-items-md-stretch">   <!--트랙 리스트-->
+            <div class="col-md-6">
+                <div class="h-100 p-5 text-white bg-dark rounded-3">
+                    <h2>Track listing</h2>
+                    <br>
+                    <ol>
+                        <li th:each="item : ${track}" th:text="${item}"></li>
+                    </ol>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <br>
+                    <h2 style="font-weight: bold; color: red;">$ 22<sup style="font-size: small;">49</sup></h2>
+                    <br>
+                    <ol>
+                        <li> 해외배송 제품의 관부가세 유의사항 확인 필수!</li>
+                        <li> 파손 위험 / 택배사 과실로 인한 파손은 환불 X</li>
+                        <li> 제품 발송일을 꼭 확인해주세요!</li>
+                        <li> 단순변심으로 인한 교환/환불은 불가능합니다.</li>
+                        <li> 질문과 답변에 남겨주시면 재입고시 안내드립니다.</li>
+                        <li> 제주/도서산간은 추가운송료가 발생될 수 있음</li>
+                    </ol>
+                    <br>
+                    <button class="btn btn-outline-secondary" type="button" style="color: red; font-weight: 600;">Add to Cart</button>
+                    <button class="btn btn-outline-secondary" type="button" style="color: red; font-weight: 600;">Buy now!</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="pt-3 mt-4 text-muted border-top">
+            &copy; 2022 HIGHCLOUD
+        </footer>
+    </div>
+</main>
+
+</body>
+</html>
