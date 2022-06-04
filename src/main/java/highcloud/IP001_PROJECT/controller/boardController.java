@@ -61,6 +61,6 @@ public class boardController {
     public String deleteQuestion(HttpServletRequest request, HttpSession session){
         int qid = Integer.parseInt(request.getParameter("qid"));
         service.deleteQuestion(qid, session);
-        return "/board";
+        return "redirect:/board";
     }
 }

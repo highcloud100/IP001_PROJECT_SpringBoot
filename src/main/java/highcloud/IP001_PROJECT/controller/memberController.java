@@ -77,11 +77,12 @@ public class memberController {
     }
 
     @PostMapping("/updateInfo")
-    public String postUpdate(@ModelAttribute Member member,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public String postUpdate(@ModelAttribute Member member,HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws IOException {
         System.out.println(member.getName());
         boolean is = memberService.check(member.getId(),req.getParameter("oldpwd"));
         if(is){
             memberService.update(member);
+            session.setAttribute("member", member);
             resp.getWriter().print("<script>alert('Changed !!');</script>");
             resp.getWriter().print("<script>location.href='/main';</script>");
         }

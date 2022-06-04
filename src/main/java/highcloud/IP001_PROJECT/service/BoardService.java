@@ -51,7 +51,7 @@ public class BoardService {
 
     public int deleteAnswer(int aid, HttpSession session){
         int qid =  getAnswer(aid).getQuestion();
-        if(((Member)session.getAttribute("member")).equals(getAnswer(aid).getWho())){
+        if(((Member)session.getAttribute("member")).getId().equals(getAnswer(aid).getWho())){
             repository.deleteAnswer(aid);
             return qid;
         }

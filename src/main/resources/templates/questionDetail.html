@@ -70,7 +70,8 @@
     <div class="container-fluid py-3" id="q">
 
       <h2  id="title" class="display-8 fw-bold" th:text="${curQuestion.getHead()}">=</h2>
-      <div style="text-align: right;"> <span th:text="${curQuestion.getWho()}"></span> / <span th:text="${curQuestion.getDate()}"></span></div>
+      <div style="text-align: right;"> <span th:text="${curQuestion.getWho()}"></span> / <span th:text="${curQuestion.getDate()}"></span>
+        <a th:if="${session.member.getId().equals(curQuestion.getWho())}" th:href="@{/deleteQuestion(qid=${curQuestion.getId()})}" style="color: red">지우기</a> </div>
       <br>
       <p class="fs-6" th:text="${curQuestion.getBody()}">   <!-- 질문 내용 -->
       </p>
