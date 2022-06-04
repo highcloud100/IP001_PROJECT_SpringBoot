@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+            box-sizing: border-box;
+            height: 100%;
+
+            margin: 50px auto;
+        }
+
+        form{
+            height: 500px;
+            display: flex;
+            align-items: center;
+
+        }
+    </style>
+</head>
+<body  >
+<form class="row justify-content-md-center was-validated" action="/addNewLp" method="post" enctype="multipart/form-data">
+    <div class="form-group col-md-4 " >
+        <label for="title">TITLE</label>
+        <input type="text" class="form-control is-invalid" name="TITLE" id="title" required >
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="w-100"></div>
+
+    <div class="w-100"></div>
+    <div class="form-group col-md-4">
+        <label for="info">INFO</label>
+        <textarea class="form-control is-invalid" name="INFO" id="info" required></textarea>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="w-100"></div>
+    <div class="form-group col-md-4">
+        <label for="track">TRACK / ','</label>
+        <textarea class="form-control is-invalid" name="TRACK" id="track" required></textarea>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="w-100"></div>
+    <div class="form-group col-md-4">
+        <label for="price">price</label>
+        <input type="number" step="0.1" class="form-control is-invalid" name="PRICE" id="price" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <input type="hidden" name="ID" value=1>
+    <input type="hidden" name="IMG" value="a">
+    <div class="w-100"></div>
+    <div class="form-group col-md-4">
+        <label for="img">IMG</label>
+        <input type="file" class="form-control is-invalid" name="upfile" id="img" required accept=".png">
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="w-100"></div>
+    <p></p>
+    <button type="submit" class="btn btn-primary col-md-1">Add~!</button>
+</form>
+
+</body>
+</html>

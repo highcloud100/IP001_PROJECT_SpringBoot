@@ -1,5 +1,6 @@
 package highcloud.IP001_PROJECT.controller;
 
+import highcloud.IP001_PROJECT.domain.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,11 +12,8 @@ import java.net.http.HttpRequest;
 public class MainController {
     @GetMapping("/main")
     public String main(HttpServletRequest req){
-        HttpSession session = req.getSession();
-
-        if((String) session.getAttribute("memId")==null){
-            return "redirect:/";
-        }
+//        HttpSession session = req.getSession();
+//        //session.getAttribute("member").getId();
         return "main";
     }
 }

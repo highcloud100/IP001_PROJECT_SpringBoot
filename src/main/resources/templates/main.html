@@ -24,17 +24,34 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page">HOME</a>
+            <a class="nav-link active" href="/main" aria-current="page">HOME</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/shop">SHOP</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">CART</a>
+            <a class="nav-link" href="/cart">CART</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/board">Board</a>
           </li>
         </ul>
+        <th:block th:if="${session.member.getId().equals('bbs')}">
+          <form class="d-flex" action="/adminLP">
+            <button class="btn" type="submit" style="color: firebrick">LP Info</button>
+          </form>
+
+          <form class="d-flex" action="/adminU">
+            <button class="btn" type="submit" style="color: firebrick">User Info</button>
+          </form>
+        </th:block>
+
+        <form class="d-flex" action="/update">
+          <button class="btn" type="submit" style="color: firebrick">Update</button>
+        </form>
+
         <form class="d-flex" action="/logout">
-          <button class="btn btn-outline-success" type="submit" style="color: firebrick">logout</button>
+          <button class="btn" type="submit" style="color: firebrick">Logout</button>
         </form>
       </div>
     </div>
@@ -42,7 +59,7 @@
 
   <video src="/img/turn.mp4" loop muted autoplay></video>
   <div class="find">
-    <p id="hi">WELCOME "[[${session.get('memId')}]]" !</p>
+    <p id="hi">WELCOME "[[${(session.member.getId())}]]" !</p>
     <p> Without music, life would be a mistake. (Friedrich Nietzsche)</p>
   </div>
 

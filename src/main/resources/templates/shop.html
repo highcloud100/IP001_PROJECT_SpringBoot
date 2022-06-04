@@ -29,11 +29,11 @@
             width: auto;
             max-width: 15em;
             margin: 5px auto;
+            box-shadow: 5px 5px 10px grey;
         }
         .card-title{
             font-family: 'Whisper', cursive;
-            font-weight: 1000;
-            font-size: 3em;
+            font-weight: bold;
         }
         .card-text{
             font-size: 1.2em;
@@ -69,7 +69,10 @@
                     <a class="nav-link" href="/shop">SHOP</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">CART</a>
+                    <a class="nav-link" href="/cart">CART</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/board">Board</a>
                 </li>
             </ul>
             <form class="d-flex" action="/shop">
@@ -88,8 +91,10 @@
                 <img th:src= "'/img/' + ${product.getIMG()}" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
-                <h5 class="card-title">[[${product.getTITLE()}]]</h5>
-                <p class="card-text" th:text="${#strings.substring(product.getINFO(),0,70)}"></p>
+                <div  th:if="${product.getTITLE().length() <= 10}" class="card-title " style="font-size: 50px">[[${product.getTITLE()}]]</div>
+                <div  th:unless="${product.getTITLE().length() <= 10}" class="card-title " style="font-size: 35px" >[[${product.getTITLE()}]]</div>
+                <p class="card-text" th:if="${product.getINFO().length() <= 70}" th:text="${product.getINFO()}"></p> <!--글자수 70 안넘어가면-->
+                <p class="card-text" th:unless="${product.getINFO().length() <= 70}" th:text="${#strings.substring(product.getINFO(),0,60)}+' ...'"></p>
             </div>
         </div>
     </div>

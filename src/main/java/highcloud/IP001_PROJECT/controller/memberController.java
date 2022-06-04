@@ -14,11 +14,9 @@ import java.io.IOException;
 
 @Controller
 public class memberController {
-    private memberMapper mapper;
     private MemberService memberService;
 
-    public memberController(memberMapper map, MemberService service){
-        mapper = map;
+    public memberController(MemberService service){
         memberService = service;
     }
 
@@ -47,13 +45,13 @@ public class memberController {
     public String signIn(HttpServletRequest req) {
         String id = req.getParameter("id");
         String pwd = req.getParameter("pwd");
+        HttpSession session = req.getSession();
+
         System.out.println(id + "?" + pwd);
 
-        boolean is = memberService.check(id,pwd);
+        boolean is = memberService.login(id,pwd, session );
 
         if(is){
-            HttpSession session = req.getSession();
-            session.setAttribute("memId", id);
             // 로그인 확인후 맞으면
             return "redirect:/main";
         }
@@ -64,8 +62,33 @@ public class memberController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest req){
         HttpSession session = req.getSession();
-        System.out.println(session.getAttribute("memId"));
+        System.out.println(session.getAttribute("member"));
         session.invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/update")
+    public String getUpdate(){
+//        Member exist = (Member) session.getAttribute("member");
+//        if(exist == null){
+//            return "sign_in";
+//        }
+        return "updateForm";
+    }
+
+    @PostMapping("/updateInfo")
+    public String postUpdate(@ModelAttribute Member member,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println(member.getName());
+        boolean is = memberService.check(member.getId(),req.getParameter("oldpwd"));
+        if(is){
+            memberService.update(member);
+            resp.getWriter().print("<script>alert('Changed !!');</script>");
+            resp.getWriter().print("<script>location.href='/main';</script>");
+        }
+        else{
+            resp.getWriter().print("<script>alert('Wrong Password!!');</script>");
+            resp.getWriter().print("<script>location.href='/main';</script>");
+        }
+        return "/main";
     }
 }

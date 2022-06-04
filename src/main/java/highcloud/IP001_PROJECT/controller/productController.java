@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -38,5 +39,25 @@ public class productController {
         System.out.println(title);
         productService.find(title, model);
         return "detail";
+    }
+
+    @GetMapping("/addCart")
+    public String addProduct(HttpServletRequest req,HttpSession session){
+        System.out.println(req.getParameter("title"));
+        productService.addCart(req.getParameter("title"),session);
+        //return "cart";
+        return "redirect:"+req.getHeader("Referer");
+    }
+
+    @GetMapping("/cart")
+    public String showCart(HttpSession session){
+        return "cart";
+    }
+
+    @GetMapping("/drop") // cart에서 물건 빼기
+    public String dropCart(HttpServletRequest req,HttpSession session){
+        System.out.println(req.getParameter("del"));
+        productService.dropCart(req.getParameter("del"), session);
+        return "redirect:cart";
     }
 }
