@@ -16,7 +16,7 @@ public interface productMapper {
     @Select("select * from product where ID=${id}")
     public Product findId(@Param("id") int id);
 
-    @Insert("Insert into product values(NULL, '${title}',${price},'${track}','${info}','${img}' )")
+    @Insert("Insert into product values(NULL, \"${title}\",${price},\"${track}\",\"${info}\",\"${img}\" )")
     public int putLp(@Param("title") String title,@Param("price") double price, @Param("track") String track, @Param("info") String info, @Param("img") String img);
 
     @Delete("delete from product where ID=${id};")

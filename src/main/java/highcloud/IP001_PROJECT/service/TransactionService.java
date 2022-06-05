@@ -2,11 +2,13 @@ package highcloud.IP001_PROJECT.service;
 
 import highcloud.IP001_PROJECT.domain.Member;
 import highcloud.IP001_PROJECT.domain.Product;
+import highcloud.IP001_PROJECT.domain.Transaction;
 import highcloud.IP001_PROJECT.repository.ProductRepository;
 import highcloud.IP001_PROJECT.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 public class TransactionService {
@@ -35,6 +37,8 @@ public class TransactionService {
             productService.dropCart(p.getTITLE(), session);
             repository.putTran(member.getId(),Integer.parseInt(s),addr,p.getPRICE());
         }
+        List<Transaction> llist = repository.getTransaction(((Member)session.getAttribute("member")).getId());
+        session.setAttribute("trlist", llist);
         return true;
     }
 }

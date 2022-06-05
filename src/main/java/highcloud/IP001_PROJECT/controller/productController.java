@@ -51,6 +51,7 @@ public class productController {
 
     @GetMapping("/cart")
     public String showCart(HttpSession session){
+        productService.setTran(session);
         return "cart";
     }
 

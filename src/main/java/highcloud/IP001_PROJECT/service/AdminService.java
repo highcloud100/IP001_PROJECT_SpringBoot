@@ -51,6 +51,10 @@ public class AdminService {
 
     public void addNewLp(Product product){
         product.setIMG(product.getTITLE()+".png");
+        Product p = productRepository.getProduct(product.getTITLE());
+        if(p!=null){ // 중복 처리
+            return;
+        }
         productRepository.putLp(product);
     }
 

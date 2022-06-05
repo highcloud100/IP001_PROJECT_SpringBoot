@@ -142,6 +142,39 @@
     <input type="text" name="addr" id="addr" th:value="${session.member.getAddr()}">
     <button type="submit" style="color: red; font-weight: bold">BUY</button>
 </form>
+
+<p></p>
+<hr>
+<div class="container">
+<table class="table table-striped  table-hover table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">NAME</th>
+        <th scope="col">WHAT</th>
+        <th scope="col">ADDR</th>
+        <th scope="col">MONEY</th>
+        <th scope="col">DATE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div>
+
+        <tr th:each="tran : ${session.trlist}">
+            <th class="col-1" scope="row" th:text="${tranStat.count}"></th>
+
+            <td  class="col-2" th:text="${tran.getWho()}">Mark</td>
+            <td  class="col-2" th:text="${tran.getTitle()}">Mark</td>
+            <td class="col-3" th:text="${tran.getAddr()}">@mdo</td>
+            <td class="col-3" th:text="${tran.getMoney()}">@mdo</td>
+            <td  class="col-2" th:text="${tran.getWhen()}" >Otto</td>
+
+        </tr>
+
+    </div>
+    </tbody>
+</table>
+</div>
 <script>
     function res(){
         var arr = document.querySelectorAll('input');

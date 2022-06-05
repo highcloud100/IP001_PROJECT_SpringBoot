@@ -1,8 +1,11 @@
 package highcloud.IP001_PROJECT.service;
 
+import highcloud.IP001_PROJECT.domain.Member;
 import highcloud.IP001_PROJECT.domain.Product;
+import highcloud.IP001_PROJECT.domain.Transaction;
 import highcloud.IP001_PROJECT.mapper.productMapper;
 import highcloud.IP001_PROJECT.repository.ProductRepository;
+import highcloud.IP001_PROJECT.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -14,8 +17,10 @@ import java.util.List;
 @Service
 public class ProductService {
     private ProductRepository repository;
-    public ProductService(ProductRepository repository){
+    private TransactionRepository transactionRepository;
+    public ProductService(ProductRepository repository, TransactionRepository transactionRepository){
         this.repository = repository;
+        this.transactionRepository = transactionRepository;
     }
 
     public boolean show(String find, Model model){
@@ -25,7 +30,11 @@ public class ProductService {
         if(list.isEmpty()) return false;
         return true;
     }
-
+    public void setTran(HttpSession session){
+        Member member = (Member) session.getAttribute("member");
+        List<Transaction> llist = transactionRepository.getTransaction(member.getId());
+        session.setAttribute("trlist", llist);
+    }
     public boolean find(String title, Model model){
         Product product = repository.getProduct(title);
         System.out.println(product.getTITLE());
@@ -47,6 +56,8 @@ public class ProductService {
             cart.add(p);
             session.setAttribute("cart", cart);
         }
+
+
     }
 
     public void dropCart(String title, HttpSession session){
@@ -63,6 +74,7 @@ public class ProductService {
         }
 
         session.setAttribute("cart", cart);
+
     }
 
     public Product getProduct(int id){
