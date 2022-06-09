@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface boardMapper {
-    @Select("select * from question")
+    @Select("select * from question  order by date desc") // 글 최신글이 위로 올라오게
     public List<question> getQuesions();
 
     @Select("select * from question where id=${id}")
