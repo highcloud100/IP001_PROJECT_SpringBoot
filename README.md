@@ -1,4 +1,4 @@
-# IP001_PROJECT - 쇼핑몰 만들기
+# IP001_PROJECT - 쇼핑몰 만들기 - 초기 계획
 - music LP store
 - 4/28 ~
   - ~ 5/7일까지 화면(front page) 완성
